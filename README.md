@@ -182,6 +182,9 @@ This project was developed for educational purposes as part of the **Odoo x Adam
 
 ## 👨‍💻 Developed By
 
-**Soumya**  
+**Soumyadip Jana**
+**Rikpriyo Dhali**
+**Sourav Das**
+
 B.Tech Computer Science Engineering  
 Adamas University
