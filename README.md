@@ -2,8 +2,17 @@
 
 A modern Human Resource Management System (HRMS) developed for the **Odoo x Adamas Hackathon**. The application is designed to streamline and digitize essential HR operations, providing an efficient platform for employee management, attendance tracking, leave management, payroll, and profile administration.
 
+## System Architecture
 
-## ✨ Features
+```mermaid
+graph TD
+    A[Frontend: Vite, HTML, CSS, JS] -->|API Calls| B(Backend: Node.js, Express)
+    B -->|Query| C[(Database: SQLite)]
+    B -->|Authentication| D[JWT & bcryptjs]
+    B -->|File Uploads| E[Multer]
+```
+
+## Features
 
 ### Authentication
 - Secure User Registration
@@ -49,7 +58,7 @@ A modern Human Resource Management System (HRMS) developed for the **Odoo x Adam
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - Vite
@@ -74,7 +83,7 @@ A modern Human Resource Management System (HRMS) developed for the **Odoo x Adam
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 Human-Resource-Management-System/
@@ -102,52 +111,37 @@ Human-Resource-Management-System/
 
 ---
 
-## 🚀 Installation
+## Installation
 
-Clone the repository
-
+Clone the repository:
 ```bash
-git clone https://github.com/<your-username>/Human-Resource-Management-System.git
+git clone https://github.com/SomyadipJana/Odoo-x-Adamas.git
 ```
 
-Move into the project folder
-
+Move into the project folder:
 ```bash
-cd Human-Resource-Management-System
+cd Odoo-x-Adamas
 ```
 
-Install dependencies
-
+Install dependencies:
 ```bash
 npm install
 ```
 
-Start the application
-
+Start the application:
 ```bash
 npm run dev
 ```
 
 The application will run at:
-
-Frontend
-
-```
-http://localhost:5173
-```
-
-Backend API
-
-```
-http://localhost:3001
-```
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:3001`
 
 ---
 
-## 👥 User Roles
+## User Roles
 
 ### Employee
-
 - Login
 - Manage Profile
 - View Attendance
@@ -155,14 +149,15 @@ http://localhost:3001
 - View Payroll
 
 ### Admin / HR
-
 - Manage Employees
 - Approve Leave Requests
 - Manage Attendance
 - Manage Payroll
 - View Employee Detail
 
-## 📌 Future Enhancements
+---
+
+## Future Enhancements
 
 - Email Verification
 - Password Reset
@@ -174,17 +169,17 @@ http://localhost:3001
 
 ---
 
-## 📄 License
+## License
 
 This project was developed for educational purposes as part of the **Odoo x Adamas Hackathon**.
 
 ---
 
-## 👨‍💻 Developed By
+## Developed By
 
-**Soumyadip Jana**
-**Rikpriyo Dhali**
-**Sourav Das**
+- **Soumyadip Jana**
+- **Rikpriyo Dhali**
+- **Sourav Das**
 
 B.Tech Computer Science Engineering  
 Adamas University
