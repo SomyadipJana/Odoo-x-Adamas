@@ -79,10 +79,19 @@ export async function api(url, options = {}) {
     headers,
   });
 
-  const data = await response.json();
+  const text = await response.text();
+  let data = {};
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.error('Invalid JSON response:', text);
+    }
+  }
 
   if (!response.ok) {
-    const error = new Error(data.message || 'Something went wrong');
+    const errorMessage = data.error || data.message || (text ? `HTTP ${response.status}: ${text.substring(0, 100)}` : `HTTP Error ${response.status}`);
+    const error = new Error(errorMessage);
     error.status = response.status;
     error.data = data;
     throw error;

@@ -6,6 +6,15 @@ import fs from 'fs';
 // Import database (triggers schema creation & seeding)
 import db from './db/schema.js';
 
+// Global crash logging
+process.on('uncaughtException', (err) => {
+  fs.appendFileSync(path.join(process.cwd(), 'crash.log'), `UNCAUGHT EXCEPTION: ${err.stack}\n`);
+  process.exit(1);
+});
+process.on('unhandledRejection', (reason, promise) => {
+  fs.appendFileSync(path.join(process.cwd(), 'crash.log'), `UNHANDLED REJECTION: ${reason}\n`);
+});
+
 // Import route modules
 import authRoutes from './routes/auth.js';
 import employeeRoutes from './routes/employees.js';
@@ -48,7 +57,13 @@ app.get('/api/health', (req, res) => {
 });
 
 // ─── Start Server ───────────────────────────────────────────────────────────
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Express global error:', err);
+  res.status(500).json({ error: 'Express Global Error: ' + err.message });
+});
 
+// Start server
 app.listen(PORT, () => {
   console.log(`HRMS API server running on port ${PORT}`);
 });

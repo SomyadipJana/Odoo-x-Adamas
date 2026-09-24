@@ -39,6 +39,16 @@ export default async function renderSignup(container) {
               <label class="form-label" for="employee_id">Employee ID</label>
               <input type="text" id="employee_id" class="form-input" required placeholder="EMP001">
             </div>
+
+            <div class="form-group">
+              <label class="form-label" for="first_name">First Name</label>
+              <input type="text" id="first_name" class="form-input" required placeholder="John">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="last_name">Last Name</label>
+              <input type="text" id="last_name" class="form-input" required placeholder="Doe">
+            </div>
             
             <div class="form-group">
               <label class="form-label" for="email">Email</label>
@@ -104,11 +114,13 @@ export default async function renderSignup(container) {
     e.preventDefault();
     errorMsg.classList.add('hidden');
     
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirm = document.getElementById('confirm_password').value;
-    const employee_id = document.getElementById('employee_id').value;
-    const role = document.getElementById('role').value;
+    const email = form.querySelector('#email').value;
+    const password = form.querySelector('#password').value;
+    const confirm = form.querySelector('#confirm_password').value;
+    const employee_id = form.querySelector('#employee_id').value;
+    const first_name = form.querySelector('#first_name').value;
+    const last_name = form.querySelector('#last_name').value;
+    const role = form.querySelector('#role').value;
 
     if (!isValidEmail(email)) {
       errorMsg.textContent = 'Invalid email format';
@@ -132,7 +144,7 @@ export default async function renderSignup(container) {
     submitBtn.disabled = true;
 
     try {
-      const data = await apiPost('/api/auth/signup', { email, password, employee_id, role });
+      const data = await apiPost('/api/auth/signup', { email, password, employee_id, role, first_name, last_name });
       
       setToken(data.token);
       setCachedUser(data.user);

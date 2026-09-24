@@ -149,6 +149,6 @@
   }
   .auth-split__left {
     flex: 0 0 auto;
-    padding: var(--sp-10) var(--sp-6);
+    padding: var(--sp-10) var(--sp-6); 
   }
 }

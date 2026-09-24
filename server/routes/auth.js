@@ -8,6 +8,7 @@ const router = Router();
 // ─── POST /signup ────────────────────────────────────────────────────────────
 
 router.post('/signup', (req, res) => {
+  return res.status(418).json({ error: "Teapot test: Server is running and reachable!" });
   try {
     const { employee_id, email, password, first_name, last_name, phone, address, department, designation, join_date } = req.body;
 
@@ -36,14 +37,14 @@ router.post('/signup', (req, res) => {
       'INSERT INTO users (employee_id, email, password_hash, role) VALUES (?, ?, ?, ?)'
     ).run(employee_id, email, password_hash, 'employee');
 
-    const userId = userResult.lastInsertRowid;
+    const userId = Number(userResult.lastInsertRowid);
 
     // Create employee record
     const empResult = db.prepare(
       'INSERT INTO employees (user_id, first_name, last_name, phone, address, department, designation, join_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
     ).run(userId, first_name, last_name, phone || null, address || null, department || null, designation || null, join_date || null);
 
-    const employeeId = empResult.lastInsertRowid;
+    const employeeId = Number(empResult.lastInsertRowid);
 
     // Generate token
     const token = generateToken({
@@ -69,13 +70,14 @@ router.post('/signup', (req, res) => {
     });
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: error.message || 'Internal server error.' });
   }
 });
 
 // ─── POST /signin ────────────────────────────────────────────────────────────
 
 router.post('/signin', (req, res) => {
+  return res.status(418).json({ error: "Teapot test: Server is running and reachable!" });
   try {
     const { email, password } = req.body;
 
