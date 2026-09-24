@@ -5,10 +5,7 @@ import { authenticate, generateToken } from '../middleware/auth.js';
 
 const router = Router();
 
-// ─── POST /signup ────────────────────────────────────────────────────────────
-
 router.post('/signup', (req, res) => {
-  return res.status(418).json({ error: "Teapot test: Server is running and reachable!" });
   try {
     const { employee_id, email, password, first_name, last_name, phone, address, department, designation, join_date } = req.body;
 
@@ -74,10 +71,7 @@ router.post('/signup', (req, res) => {
   }
 });
 
-// ─── POST /signin ────────────────────────────────────────────────────────────
-
 router.post('/signin', (req, res) => {
-  return res.status(418).json({ error: "Teapot test: Server is running and reachable!" });
   try {
     const { email, password } = req.body;
 
